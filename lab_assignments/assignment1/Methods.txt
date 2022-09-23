@@ -1,0 +1,8 @@
+Methods:
+
+
+The genome assembly and annotation files were downloaded from Phytozome. The Phytozome search bar was used to find the
+most updated version of the Solanum Tuberosum genome. The command line download was selected and the code was copy and 
+pasted onto the hpcc and run. To download RNA-seq data SRAtools was installed using the wget command, unzipped using the
+tar command and moved to the plb812 environment. fasterq-dumb command was then used to retrieve paired fastq files with the 
+accession numbers: SRR5448182 SRR5448183 SRR5448184 SRR5448185 SRR5448186 SRR5448187
