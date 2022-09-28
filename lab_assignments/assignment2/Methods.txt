@@ -1,0 +1,7 @@
+assignment2 Methods:
+
+I installed fastqc by using the "conda install -c bioconda fastqc" command while in the plb812 environment.
+I then used a text editor on my local desktop to write a SLURM request bash script. This script included a cd 
+to the working directory, a line adding the plb812 environment into PATH and a line adding the LD_lIBRARY to PATH.
+I then listed all SRA files and defined the list as sra. I then wrote a for loop that runs "fastqc -f fastq -o" command
+on all SRA files in the list with the assignment2 folder in my github repository as the output directory. 

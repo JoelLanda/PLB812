@@ -1,0 +1,28 @@
+#!/bin/bash --login
+#SBATCH --time=168:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=100GB
+#SBATCH --job-name assignment2
+#SBATCH --output=assignment2.SLURMout
+
+#change directory to working directory with SRR fastq files
+
+cd /mnt/gs21/scratch/landajoe
+
+#Add conda env to PATH
+export PATH="${HOME}/miniconda3/envs/plb812/bin:${PATH}"
+export LD_LIBRARY_PATH="${HOME}/miniconda3/envs/plb812/lib:${LD_LIBRARY_PATH}"
+
+
+#list SRA files 
+sra_list="SRR5448182_1.fastq SRR5448182_2.fastq SRR5448183_1.fastq SRR5448183_2.fastq SRR5448184_1.fastq SRR5448184_2.fastq SRR5448185_1.fastq SRR5448185_2.fastq SRR5448186_1.fastq SRR5448186_2.fastq SRR5448187_1.fastq SRR5448187_2.fastq"
+
+#Loop
+
+for i in ${sra_list}
+do
+	#run fastqc
+	fastqc -f fastq -o ~/PLB812/lab_assignments/assignment2 ${i}
+done
