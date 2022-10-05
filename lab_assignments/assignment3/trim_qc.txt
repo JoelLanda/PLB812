@@ -1,0 +1,32 @@
+#!/bin/bash --login
+#SBATCH --time=168:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=100GB
+#SBATCH --job-name assignment3
+#SBATCH --output=assignment3.SLURMout
+
+#change directory to working directory with SRR fastq files
+
+cd /mnt/gs21/scratch/landajoe
+
+#Add conda env to PATH
+export PATH="${HOME}/miniconda3/envs/plb812/bin:${PATH}"
+export LD_LIBRARY_PATH="${HOME}/miniconda3/envs/plb812/lib:${LD_LIBRARY_PATH}"
+
+
+#list SRA files 
+sra_list="SRR5448182 SRR5448183 SRR5448184 SRR5448185 SRR5448186 SRR5448187"
+
+#Run trimmomatic
+
+for i in ${sra_list}
+do
+	#run trimmomatic
+	trimmomatic PE -phred33 -threads 10 ${i}_1.fastq ${i}_2.fastq ${i}_1_trimpaired.fastq.gz ${i}_1_trimunpaired.fastq.gz ${i}_2_trimpaired.fastq.gz ${i}_2_trimunpaired.fastq.gz ILLUMINACLIP:~/miniconda3/pkgs/trimmomatic-0.39-hdfd78af_2/share/trimmomatic-0.39-2/adapters/TruSeq3-PE.fa:2:30:10 MINLEN:30
+	#run fastqc 
+	fastqc -f fastq -o ~/PLB812/lab_assignments/assignment3 ${i}_1_paired.fastq.gz ${i}_2_paired.fastq.gz
+done
+
+

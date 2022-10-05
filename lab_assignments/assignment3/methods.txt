@@ -1,0 +1,10 @@
+1: 
+
+fastq files for my samples were in my scratch directory from the initial download of the SRR accessions. I used trimmomatic 
+to trim adapter sequences and low quality reads. I also used fastqc to check the quality of the trimmed data. These programs 
+were run in a bash script and submitted to SLURM. The bash script contained a cd to the scratch directory with my files, a
+line adding the conda environment to PATH, a line adding the LD_library to PATH, and a for loop running the trimmomatic PE 
+command and the fastqc command. The trimmomatic comand specified paired end reads, 10 threads, phred33, truseq3 adapter sequences, 
+2 seed mismatches allowed, palindrome clip cutoff of 30, simple clip threshhold of 10, and minimum length of reads 30. 10 threads 
+were used to speed up the process, phred33 specifies how phred scores are interpreted. minimum length of 30 was used to filter out
+reads that may be adapter reads or other small sequences that are not useful.
