@@ -1,0 +1,8 @@
+Methods:
+First an index was built using the genome annotation gff file and the fasta file of the entire reference genome. To do this 
+the exons and splice sites were retrieved from the gff file using the commands hisat2_extract_splice_sites.py and hisat2_extract_exons.py.
+The index was then created using the hisat2-build command with arguments -p 8 to increase the number of processing cores used, 
+--ss to specify splice sites and --exon to specify the exons file. The Hisat2 command was then used to align the RNA-seq data
+to the reference genome index that was created. This was run with -p 10 argument and also piped into the samtools view and samtools sort 
+commands. samtools view converts the output files into a bam format with the argument -bh. samtools sort sorts the alignments that 
+are created. the -@ argument for samtools specifies how many threads to run the program on. 
