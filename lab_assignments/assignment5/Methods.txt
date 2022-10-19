@@ -1,0 +1,12 @@
+Methods:
+Read counts were generated using the HTSeq-count command specifying the -f bam argument to tell htseq that the inputs are bam files.
+The union mode was used by default to generate htseq count txt files. The htseq output for each sample was then used to do a DEG expression analysis
+in R using DESeq2. list.files was used to create the sampleFiles object. data.frame was used to create the sampleTable object as a data frame with 
+colums called sampleName, fileName, and treatment. The sub command was used to remove the ".txt" and "-1.txt" from the file name to create the 
+sampleName and treatment columns. The factor command was then used to convert the treatment vector to a factor. The DESeq object was then created using 
+the DESeqDataSetFromHTSeqCount function. rguments of this function specify the sampleTable, directory with files and design (treatment). 
+The control treatment was then set as the reference using the relevel command. data was normalized using the estimatesizefactors command 
+dispersions were estimated with the estimatedispersions command. The DESeq command was then run on the DESeq object (dds) with the argument test="LRT"
+to specify a log ratio test. A wald test was then performed on dds using the nbinomwaldtest command. an object called resultsTable was then created  
+with the as.data.frame command. The nrow and na.omit functions were used to call the number of rows omitting any rows with a p value greater than 0.05.
+results were plotted using the plotMA command with the ylim argument at (-2,2) to only show Y-axis values that are between 2 and -2 fold change.                                                                        
