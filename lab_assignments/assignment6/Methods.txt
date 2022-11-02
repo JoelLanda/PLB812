@@ -1,0 +1,15 @@
+Methods:
+
+GO terms were downloaded from phytozome. columns 2 and 10 were isolated using the cut 
+command specifying -f2,10. A list of only unique genes was created from these columns using
+the sort and uniq commands. Next a while loop was used to format the rest of the file and 
+concatenate with the unique gene list that was generated in the previous step. DESeq2 outputs
+were formatted on R using  the as.integer function to label each gene in the list as 
+either 0 or 1. genes labeled 1 have a padj value of less than 0.05 and are greater than 
+equal to 1 or less than equal to -1. the factor function was then used to convert vectors 
+into a factor. This was for both upregulated genes (log2FC >= 1) and downregulated (log2FC <= -1)
+separately. Using the new() function in topGO, the topGO objects for each list of DEGs was 
+created. Three topGO ojects were made (BP, MF, and CC) for each of the two DEG lists. The runTest 
+function was used on each topGO object and for each gene ontology category (MF, BP, CC). Arguments 
+specified to use the parentchild algorithm and fisher statistical test. The GenTable function was then used 
+with arguments that pointed to the fisher test outputs.
