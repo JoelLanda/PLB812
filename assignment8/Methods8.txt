@@ -1,0 +1,8 @@
+methods:
+
+First picard was used to mark the duplicates in the bam alignment file. the input was the bam alignment file and 
+I specified names for the output and metrics file. Gatk was then used to add theread groups. this was achieved with the 
+AddOrReplaceReadGroups command in gatk the input file and output file were specified along with the read group library
+and read group ID. The read group platform was set as ILLUMINA. the read group sample name was set to WS2. After adding 
+read groups variants were called using the gatk command HaplotypeCaller. In this command the input file with read 
+groups and the reference genome were ued as inputs and the output filename was specified. 
