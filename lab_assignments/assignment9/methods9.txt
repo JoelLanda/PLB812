@@ -1,0 +1,7 @@
+Methods:
+A new environment called ortho was created and orthofinder was installed using conda.
+Files were downloaded using the command line download from phytozome. Files were then unzipped using the gunzip command and 
+renamed to Athaliana.fa, Atrichopoda.fa, and Osativa.fa. files were then placed in a directory called ortho and orthofinder 
+was run through a SLURM submission with the command orthofinder -f ortho specifying the directory with the files. 
+lines in the N0.tsv file were counted using the command wc -l to count the number of orthogroups identified. grep was then used
+to determine the number of orthogroups in rice that belong to the HAESA orthogroup in Arabidopsis.
