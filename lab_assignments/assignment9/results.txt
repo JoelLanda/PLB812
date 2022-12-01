@@ -1,2 +1,3 @@
 Line count: 17694
 Rice genes in orthogroup HAESA: 0
+Rice genes in orthogroup Chalcone Synthase: 1
